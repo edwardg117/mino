@@ -6,6 +6,10 @@ execute as @e[tag=cell,tag=!in_queue,tag=!at_limit] if score @s level = target_l
 execute unless entity @e[tag=cell,tag=in_queue] run function mn:maze_gen/cell/edge/edge_generation
 # TODO Place switches
 #######################################################################################################################################################################
+## Cull connectors on edges to prevent generating switches outside of range
+execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run function mn:maze_gen/cell/find_dist
+execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] if score @s dist_frm_strt > target_size settings run kill @s
+#
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever"]}
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=North] run team join Red @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
