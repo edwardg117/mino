@@ -49,3 +49,6 @@ scoreboard players set @e[tag=cell] level 1
 scoreboard players set num_switches game_vars 0
 scoreboard players set found_switches game_vars 0
 scoreboard players set game_running game_vars 0
+
+execute at @e[tag=start] run setblock ~ ~ ~ structure_block[mode=load]{name:"mn:maze/entrance",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
+execute at @e[tag=start] run setblock ~ ~1 ~ redstone_block
