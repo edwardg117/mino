@@ -7,6 +7,9 @@ execute if score empty_spaces vars >= target_switches settings run scoreboard pl
 execute if score empty_spaces vars < target_switches settings run say There is not enough spaces to place switches on this level. Will place as many as possible.
 execute if score empty_spaces vars < target_switches settings run scoreboard players operation switches_to_place vars = empty_spaces vars
 
+tellraw @a ["",{"text":"Can place: "},{"score":{"name":"empty_spaces","objective":"vars"},"color":"yellow"}]
+tellraw @a ["",{"text":"Trying to place switches: "},{"score":{"name":"switches_to_place","objective":"vars"},"color":"yellow"}]
+
 # Place switches randomly
 execute if score switches_to_place vars matches 1.. run function mn:maze_gen/lever/loop
 
