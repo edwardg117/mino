@@ -44,7 +44,8 @@ execute store result score @e[tag=start] posZ run data get entity @e[tag=start,l
 scoreboard players set segments_made vars 0
 scoreboard players set target_level vars 0
 scoreboard players set @e[tag=cell] level 1
-
+tag @e[tag=cell] add in_queue
+scoreboard players set target_level vars 1
 
 scoreboard players set num_switches game_vars 0
 scoreboard players set found_switches game_vars 0

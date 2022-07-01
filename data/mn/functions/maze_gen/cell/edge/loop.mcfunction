@@ -6,8 +6,8 @@ tag @e[tag=side_start] add connected
 # 2. Create helper stands
 execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_1"],ArmorItems:[{},{},{},{id:"minecraft:blue_concrete",Count:1b}]}
 execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_2"],ArmorItems:[{},{},{},{id:"minecraft:red_concrete",Count:1b}]}
-#execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_3"],ArmorItems:[{},{},{},{id:"minecraft:glowstone",Count:1b}]}
-#execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_4"],ArmorItems:[{},{},{},{id:"minecraft:glowstone",Count:1b}]}
+#execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_3"],ArmorItems:[{},{},{},{id:"minecraft:blue_terracotta",Count:1b}]}
+#execute at @e[tag=side_start] run summon armor_stand ~ ~ ~ {NoGravity:1b,Marker:1b,Invisible:1b,Tags:["maze_gen","edge_helper","helper_4"],ArmorItems:[{},{},{},{id:"minecraft:red_terracotta",Count:1b}]}
 
 # 3. Remove out of bounds armor stands
 execute at @e[tag=side_start] as @e[tag=no_path,distance=..2.1] run function mn:maze_gen/cell/edge/remove_oob
