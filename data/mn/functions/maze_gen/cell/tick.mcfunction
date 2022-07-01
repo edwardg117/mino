@@ -11,11 +11,11 @@ execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run function 
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] if score @s dist_frm_strt > target_size settings run kill @s
 # TODO Move this to a fucntion that can tell when it can't place all levers and how many it will place
 execute unless entity @e[tag=cell,tag=in_queue] run function mn:maze_gen/lever/add_levers
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=North] run team join Red @s
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=East] run team join Yellow @s
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
+#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
+#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=North] run team join Red @s
+#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
+#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=East] run team join Yellow @s
+#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
 ## TODO Remove the glowing armor stands ^ later ## This causes the spazzing out of the switch wall
 # Skin application
 execute as @e[tag=lever,team=Red] run function mn:maze_gen/cell/skin/lever/north
