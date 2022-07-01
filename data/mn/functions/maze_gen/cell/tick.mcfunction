@@ -9,21 +9,18 @@ execute unless entity @e[tag=cell,tag=in_queue] run function mn:maze_gen/cell/ed
 ## Cull connectors on edges to prevent generating switches outside of range
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run function mn:maze_gen/cell/find_dist
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] if score @s dist_frm_strt > target_size settings run kill @s
-#
-execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever"]}
+# TODO Move this to a fucntion that can tell when it can't place all levers and how many it will place
+execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=North] run team join Red @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=East] run team join Yellow @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
-## TODO Remove the glowing armor stands ^ later ##
-execute as @e[tag=lever,team=Red] at @s run setblock ~ ~-3 ~-3 structure_block[mode=load]{name:"minecraft:lever_north_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
-execute as @e[tag=lever,team=Red] at @s run setblock ~ ~-2 ~-3 redstone_block replace
-execute as @e[tag=lever,team=Blue] at @s run setblock ~ ~-3 ~2 structure_block[mode=load]{name:"minecraft:lever_south_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
-execute as @e[tag=lever,team=Blue] at @s run setblock ~ ~-2 ~2 redstone_block replace
-execute as @e[tag=lever,team=Yellow] at @s run setblock ~2 ~-3 ~ structure_block[mode=load]{name:"minecraft:lever_east_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
-execute as @e[tag=lever,team=Yellow] at @s run setblock ~2 ~-2 ~ redstone_block replace
-execute as @e[tag=lever,team=Green] at @s run setblock ~-3 ~-3 ~ structure_block[mode=load]{name:"minecraft:lever_west_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
-execute as @e[tag=lever,team=Green] at @s run setblock ~-3 ~-2 ~ redstone_block replace
+## TODO Remove the glowing armor stands ^ later ## This causes the spazzing out of the switch wall
+# Skin application
+execute as @e[tag=lever,team=Red] run function mn:maze_gen/cell/skin/lever/north
+execute as @e[tag=lever,team=Blue] run function mn:maze_gen/cell/skin/lever/south
+execute as @e[tag=lever,team=Yellow] run function mn:maze_gen/cell/skin/lever/east
+execute as @e[tag=lever,team=Green] run function mn:maze_gen/cell/skin/lever/west
 #######################################################################################################################################################################
 # If no more cells, clean up extra armor stands to help with lag
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run kill @s
