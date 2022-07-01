@@ -40,7 +40,12 @@ execute store result score @e[tag=start] posZ run data get entity @e[tag=start,l
 #execute if score @e[tag=start,limit=1] posY matches ..-1 run scoreboard players operation @e[tag=start] posY *= invert const
 #execute if score @e[tag=start,limit=1] posZ matches ..-1 run scoreboard players operation @e[tag=start] posZ *= invert const
 
+# Reset values
 scoreboard players set segments_made vars 0
 scoreboard players set target_level vars 0
-scoreboard players set num_switches vars 0
 scoreboard players set @e[tag=cell] level 1
+
+
+scoreboard players set num_switches game_vars 0
+scoreboard players set found_switches game_vars 0
+scoreboard players set game_running game_vars 0

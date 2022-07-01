@@ -54,7 +54,7 @@ execute at @s as @e[distance=..2.1,tag=connector,tag=become_path] at @s run summ
 # Inherrit direction
 #execute as @e[tag=become_path,tag=East] 
 
-#FIXME changed this so direction is saved, hopefully just changing the tags is okay
+# changed this so direction is saved, hopefully just changing the tags is okay
 #execute at @s as @e[distance=..2.1,tag=connector,tag=!become_path] at @s run summon armor_stand ~ ~ ~ {CustomNameVisible:0b,NoGravity:1b,Marker:1b,Tags:["maze_gen","no_path"],CustomName:'{"text":"No Path","color":"dark_red"}',Invisible:1b}
 execute at @s as @e[distance=..2.1,tag=connector,tag=!become_path] run tag @s add no_path
 execute at @s as @e[distance=..2.1,tag=connector,tag=!become_path] run tag @s remove connector

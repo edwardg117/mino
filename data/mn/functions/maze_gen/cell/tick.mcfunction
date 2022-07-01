@@ -15,7 +15,7 @@ execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=East] run team join Yellow @s
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
-## Remove the glowing armor stands ^ later ##
+## TODO Remove the glowing armor stands ^ later ##
 execute as @e[tag=lever,team=Red] at @s run setblock ~ ~-3 ~-3 structure_block[mode=load]{name:"minecraft:lever_north_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace
 execute as @e[tag=lever,team=Red] at @s run setblock ~ ~-2 ~-3 redstone_block replace
 execute as @e[tag=lever,team=Blue] at @s run setblock ~ ~-3 ~2 structure_block[mode=load]{name:"minecraft:lever_south_1",posX:-2,posY:0,posZ:-2,rotation:"NONE",mirror:"NONE",mode:"LOAD",ignoreEntities:0b} replace

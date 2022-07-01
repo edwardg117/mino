@@ -10,6 +10,7 @@ scoreboard objectives add seg_frm_strt dummy "Segments/Tiles from start"
 scoreboard objectives add con_left dummy "Connectors this Cell has left"
 scoreboard objectives add num_path dummy "Number of paths from this cell"
 scoreboard objectives add level dummy "Level of the Cell"
+scoreboard objectives add game_vars dummy "Game variables"
 #scoreboard objectives add cell_state dummy "State:0-None,1-Processing,2-Done"
 
 # Defaults
@@ -46,4 +47,8 @@ scoreboard players set target_temp vars 0
 scoreboard players set allowed_connect vars 0
 scoreboard players set segments_made vars 0
 scoreboard players set target_level vars 0
-scoreboard players set num_switches vars 0
+#scoreboard players set num_switches vars 0
+
+scoreboard players set num_switches game_vars 0
+scoreboard players set found_switches game_vars 0
+scoreboard players set game_running game_vars 0
