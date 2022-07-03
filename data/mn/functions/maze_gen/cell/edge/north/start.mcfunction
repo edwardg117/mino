@@ -1,9 +1,10 @@
 # Move along the wall north
 #say traveling north
 execute at @e[tag=helper_1] run tp @e[tag=helper_2] ~ ~ ~-5
-execute at @e[tag=helper_1] run kill @e[tag=no_path,distance=..3.1]
-execute at @e[tag=helper_2] run kill @e[tag=no_path,distance=..3.1]
-
+execute at @e[tag=helper_1] run kill @e[tag=no_path,distance=..3.1,tag=East]
+execute at @e[tag=helper_2] run kill @e[tag=no_path,distance=..3.1,tag=East]
+execute at @e[tag=helper_1] run kill @e[tag=no_path,distance=..3.1,tag=West]
+execute at @e[tag=helper_2] run kill @e[tag=no_path,distance=..3.1,tag=West]
 # Find Side
 #execute if score @e[tag=helper_1,limit=1] posX > @e[tag=start,limit=1] posX run say Side: +X East
 #execute if score @e[tag=helper_1,limit=1] posX < @e[tag=start,limit=1] posX run say Side: -X West

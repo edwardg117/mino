@@ -4,24 +4,13 @@
 execute as @e[tag=cell,tag=!in_queue,tag=!at_limit] if score @s level = target_level vars run tag @s add in_queue
 # If no more cells in queue, generate around the edges from end to end
 execute unless entity @e[tag=cell,tag=in_queue] run function mn:maze_gen/cell/edge/edge_generation
-# TODO Place switches
+# Place switches
 #######################################################################################################################################################################
 ## Cull connectors on edges to prevent generating switches outside of range
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run function mn:maze_gen/cell/find_dist
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] if score @s dist_frm_strt > target_size settings run kill @s
-# TODO Move this to a fucntion that can tell when it can't place all levers and how many it will place
+# Run switch placer function
 execute unless entity @e[tag=cell,tag=in_queue] run function mn:maze_gen/lever/add_levers
-#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path,sort=random,limit=3] at @s run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
-#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=North] run team join Red @s
-#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=South] run team join Blue @s
-#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=East] run team join Yellow @s
-#execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
-## TODO Remove the glowing armor stands ^ later ## This causes the spazzing out of the switch wall
-# Skin application
-execute as @e[tag=lever,team=Red] run function mn:maze_gen/cell/skin/lever/north
-execute as @e[tag=lever,team=Blue] run function mn:maze_gen/cell/skin/lever/south
-execute as @e[tag=lever,team=Yellow] run function mn:maze_gen/cell/skin/lever/east
-execute as @e[tag=lever,team=Green] run function mn:maze_gen/cell/skin/lever/west
 #######################################################################################################################################################################
 # If no more cells, clean up extra armor stands to help with lag
 execute unless entity @e[tag=cell,tag=in_queue] as @e[tag=no_path] run kill @s
