@@ -1,3 +1,5 @@
+# Setup
+execute as @e[tag=no_path] run function mn:maze_gen/cell/find_dist
 # 1. Run the loop
 function mn:maze_gen/cell/edge/loop
 

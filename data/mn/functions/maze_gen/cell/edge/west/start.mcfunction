@@ -1,10 +1,12 @@
 # Move along the wall west
 #say traveling west
 execute at @e[tag=helper_1] run tp @e[tag=helper_2] ~-5 ~ ~
-execute at @e[tag=helper_1] run kill @e[tag=no_path,distance=..3.1,tag=North]
-execute at @e[tag=helper_2] run kill @e[tag=no_path,distance=..3.1,tag=North]
-execute at @e[tag=helper_1] run kill @e[tag=no_path,distance=..3.1,tag=South]
-execute at @e[tag=helper_2] run kill @e[tag=no_path,distance=..3.1,tag=South]
+# Remove no_paths along these edges, but not ones that are on the edge (in the path to travel)
+# Reason for distance is to prevent killing the no_paths that we want to convert into paths that are next to a corner
+execute at @e[tag=helper_1] as @e[tag=no_path,distance=..3.1,tag=North] if score @s dist_frm_strt < target_size settings run kill @s
+execute at @e[tag=helper_2] as @e[tag=no_path,distance=..3.1,tag=North] if score @s dist_frm_strt < target_size settings run kill @s
+execute at @e[tag=helper_1] as @e[tag=no_path,distance=..3.1,tag=South] if score @s dist_frm_strt < target_size settings run kill @s
+execute at @e[tag=helper_2] as @e[tag=no_path,distance=..3.1,tag=South] if score @s dist_frm_strt < target_size settings run kill @s
 
 # Find Side
 #execute if score @e[tag=helper_1,limit=1] posX > @e[tag=start,limit=1] posX run say Side: +X East
