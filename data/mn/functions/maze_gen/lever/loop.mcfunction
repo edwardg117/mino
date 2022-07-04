@@ -6,8 +6,9 @@
 #execute as @e[tag=lever] at @s if entity @e[tag=no_path,distance=..3.5,tag=West] run team join Green @s
 
 tag @e[tag=no_path,sort=random,limit=1] add become_lever
-#TODO remove glowy from stand
-execute at @e[tag=become_lever] run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
+# Only make the stand visible if debug is on
+execute if score DEBUG settings matches 1 run execute at @e[tag=become_lever] run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:1b,Tags:["lever","maze_gen"]}
+execute if score DEBUG settings matches 0 run execute at @e[tag=become_lever] run summon armor_stand ~ ~3 ~ {NoGravity:1b,Glowing:0b,Tags:["lever","maze_gen"]}
 # Get direction
 # TODO change this to just inherrit the tag
 execute at @e[tag=become_lever,tag=North] run team join Red @e[tag=lever,distance=..3.5]
@@ -26,7 +27,7 @@ execute at @e[tag=become_lever,tag=West] positioned ~-3 ~ ~ run kill @e[tag=no_p
 scoreboard players add num_switches game_vars 1
 scoreboard players remove switches_to_place vars 1
 
-tellraw @a ["",{"text":"Placed: "},{"score":{"name":"num_switches","objective":"game_vars"},"color":"yellow"}]
+execute if score DEBUG settings matches 1 run tellraw @a ["",{"text":"Placed: "},{"score":{"name":"num_switches","objective":"game_vars"},"color":"yellow"}]
 
 # Loop if more to place and there are still valid spots
 execute if score switches_to_place vars matches 1.. if entity @e[tag=no_path] run function mn:maze_gen/lever/loop
