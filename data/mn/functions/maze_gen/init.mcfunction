@@ -52,3 +52,5 @@ scoreboard players set target_level vars 0
 scoreboard players set num_switches game_vars 0
 scoreboard players set found_switches game_vars 0
 scoreboard players set game_running game_vars 0
+
+function mn:rng/reset
